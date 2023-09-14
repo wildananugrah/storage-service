@@ -15,3 +15,10 @@ services:
       - TMP_UPLOAD_FOLDER=${TMP_UPLOAD_FOLDER}
     volumes:
       - ./uploads:/app/uploads
+    networks:
+      app-net: {}
+
+networks:
+  app-net:
+    external: true
+    name: 'diudara-net'
