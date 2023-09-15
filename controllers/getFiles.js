@@ -41,7 +41,7 @@ const listFilesRecursively = (dir, userId) => {
 export default (req, res) => {
     try {
         const files = listFilesRecursively(`uploads/${req.params.userId}`, req.params.userId)
-        return res.json({ files: categorizeFiles(files) })
+        return res.json(files)
     } catch (e) {
         return res.status(500).json({ message: e.message })
     }

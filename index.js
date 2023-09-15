@@ -51,7 +51,7 @@ const upload = multer({ storage: storage })
 app.post("/upload", upload.single('myFile'), postUpload)
 app.get("/files/:userId", getFiles)
 app.delete("/files/:userId/:type/:filepath", deleteFile)
-app.get("/files/:userId/:type/:filepath", getFile)
+app.get("/file/:userId", getFile)
 
 // healthcheck
 app.get("/healthcheck", (req, res) => {
