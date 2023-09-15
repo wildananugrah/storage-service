@@ -3,9 +3,9 @@ import createFolder from '../helpers/createFolder.js'
 
 export default async (req, res) => {
     const { path, originalname } = req.file
-    const { user_id, type } = req.body
+    const { user_id } = req.body
 
-    const destination = `uploads/${user_id}/${type}/${originalname}`
+    const destination = `uploads/${user_id}/${originalname}`
 
     try {
 

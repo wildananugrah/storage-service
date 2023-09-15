@@ -1,23 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 
-const categorizeFiles = (data) => {
-    const output = {
-        images: [],
-        videos: []
-    };
-
-    data.forEach(file => {
-        if (file.startsWith('/image')) {
-            output.images.push(file.replace('/image', ''))
-        } else if (file.startsWith('/video')) {
-            output.videos.push(file.replace('/video',''))
-        }
-    });
-
-    return output;
-}
-
 const listFilesRecursively = (dir, userId) => {
     let results = []
 

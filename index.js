@@ -50,7 +50,7 @@ const upload = multer({ storage: storage })
 // routes
 app.post("/upload", upload.single('myFile'), postUpload)
 app.get("/files/:userId", getFiles)
-app.delete("/files/:userId/:type/:filepath", deleteFile)
+app.delete("/file/:userId", deleteFile)
 app.get("/file/:userId", getFile)
 
 // healthcheck
