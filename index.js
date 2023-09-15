@@ -9,6 +9,12 @@ import postUpload from './controllers/postUpload.js'
 import getFiles from './controllers/getFiles.js'
 import deleteFile from './controllers/deleteFile.js'
 import getFile from './controllers/getFile.js'
+import getFolders from './controllers/getFolders.js'
+import postFolder from './controllers/postFolder.js'
+import deleteFolder from './controllers/deleteFolder.js'
+import putRename from './controllers/putRename.js'
+import putMoveFolder from './controllers/putMoveFolder.js'
+import putMoveFile from './controllers/putMoveFile.js'
 
 // setup config environment
 dotenv.config()
@@ -50,8 +56,18 @@ const upload = multer({ storage: storage })
 // routes
 app.post("/upload", upload.single('myFile'), postUpload)
 app.get("/files/:userId", getFiles)
+
 app.delete("/file/:userId", deleteFile)
 app.get("/file/:userId", getFile)
+app.put("/file/:userId", putMoveFile)
+
+app.get("/folders/:userId", getFolders)
+
+app.post("/folder/:userId", postFolder)
+app.delete("/folder/:userId", deleteFolder)
+app.put("/folder/:userId", putMoveFolder)
+
+app.put("/rename/:userId", putRename)
 
 // healthcheck
 app.get("/healthcheck", (req, res) => {

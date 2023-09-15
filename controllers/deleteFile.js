@@ -5,7 +5,8 @@ export default (req, res) => {
     const { p } = req.query
     
     try {
-        return res.json({ message: fs.unlinkSync(`uploads/${userId}/${p}`) })
+        fs.unlinkSync(`uploads/${userId}/${p}`)
+        return res.json({ message: "File has been deleted." })
     } catch (e) {
         return res.status(500).json({ message : e.message })
     }
