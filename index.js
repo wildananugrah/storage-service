@@ -3,6 +3,7 @@ import express from 'express'
 import multer from 'multer'
 import morgan from 'morgan'
 import dotenv from 'dotenv'
+import cors from 'cors'
 
 import createFolder from './helpers/createFolder.js'
 import postUpload from './controllers/postUpload.js'
@@ -37,6 +38,7 @@ morgan.token('res-body', (req, res) => res.__custombody__)
 // setup app use
 app.use(morgan(LOG_FORMAT))
 app.use(express.json())
+app.use(cors())
 
 // setup multer storage
 const storage = multer.diskStorage({
