@@ -5,7 +5,7 @@ export default async (req, res) => {
     const { path, originalname } = req.file
     const { user_id, root } = req.body
 
-    const destination = `uploads/${user_id}/${root}/${originalname}`
+    const destination = root === undefined ? `uploads/${user_id}/${originalname}` : `uploads/${user_id}/${root}/${originalname}`
 
     try {
 
