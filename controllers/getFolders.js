@@ -1,11 +1,17 @@
+import getUserData from "../helpers/getUserData.js";
+import getUserToken from "../helpers/getUserToken.js";
 import listFoldersRecursiveSync from "../helpers/listFoldersRecursiveSync.js";
 
-export default (req, res) => {
+export default async (req, res) => {
     try {
         const { root } = req.query
 
-        const p = root === undefined ? `uploads/${req.params.userId}` : `uploads/${req.params.userId}/${root}`
-        const dirs = listFoldersRecursiveSync(p, req.params.userId)
+        const token = await getUserToken(req.headers.authorization)
+        const userData = await getUserData(token)
+        const { id } = userData.data
+
+        const p = root === undefined ? `uploads/${id}` : `uploads/${id}/${root}`
+        const dirs = listFoldersRecursiveSync(p, id)
 
         return res.json(dirs)
 

@@ -1,12 +1,17 @@
+import getUserData from '../helpers/getUserData.js'
+import getUserToken from '../helpers/getUserToken.js'
 import moveFolderRecursive from '../helpers/moveFolderRecursive.js'
 
-export default (req, res) => {
+export default async (req, res) => {
     try {
         
-        const { userId } = req.params
         const { current, destination } = req.body
 
-        moveFolderRecursive(`uploads/${userId}/${current}`, `uploads/${userId}/${destination}`)
+        const token = await getUserToken(req.headers.authorization)
+        const userData = await getUserData(token)
+        const { id } = userData.data
+
+        moveFolderRecursive(`uploads/${id}/${current}`, `uploads/${id}/${destination}`)
 
         res.json({ message: "Folder has been moved." })
 

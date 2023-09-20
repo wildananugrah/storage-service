@@ -49,7 +49,7 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, file.originalname + '-' + uniqueSuffix)
+        cb(null, `${uniqueSuffix}-${file.originalname}`)
     }
 })
 
@@ -57,19 +57,19 @@ const upload = multer({ storage: storage })
 
 // routes
 app.post("/upload", upload.single('myFile'), postUpload)
-app.get("/files/:userId", getFiles)
+app.get("/files", getFiles)
 
-app.delete("/file/:userId", deleteFile)
-app.get("/file/:userId", getFile)
-app.put("/file/:userId", putMoveFile)
+app.delete("/file", deleteFile)
+app.get("/file", getFile)
+app.put("/file", putMoveFile)
 
-app.get("/folders/:userId", getFolders)
+app.get("/folders", getFolders)
 
-app.post("/folder/:userId", postFolder)
-app.delete("/folder/:userId", deleteFolder)
-app.put("/folder/:userId", putMoveFolder)
+app.post("/folder", postFolder)
+app.delete("/folder", deleteFolder)
+app.put("/folder", putMoveFolder)
 
-app.put("/rename/:userId", putRename)
+app.put("/rename", putRename)
 
 // healthcheck
 app.get("/healthcheck", (req, res) => {

@@ -1,13 +1,19 @@
 import fs from 'fs'
 import createFolder from '../helpers/createFolder.js'
+import getUserData from '../helpers/getUserData.js'
+import getUserToken from '../helpers/getUserToken.js'
 
 export default async (req, res) => {
     const { path, originalname } = req.file
-    const { user_id, root } = req.body
-
-    const destination = root === undefined ? `uploads/${user_id}/${originalname}` : `uploads/${user_id}/${root}/${originalname}`
+    const { root } = req.body
 
     try {
+
+        const token = await getUserToken(req.headers.authorization)
+        const userData = await getUserData(token)
+        const { id } = userData.data
+
+        const destination = root === undefined ? `uploads/${id}/${originalname}` : `uploads/${id}/${root}/${originalname}`
 
         createFolder(destination)
 
@@ -23,7 +29,7 @@ export default async (req, res) => {
         const responseMsg = {
             data: {
                 filename: req.file.originalname,
-                path: destination.replace(`uploads/${user_id}`, '')
+                path: destination.replace(`uploads/${id}`, '')
             }
         }
         return res.json(responseMsg)

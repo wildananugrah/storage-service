@@ -1,12 +1,17 @@
 import fs from 'fs'
+import getUserToken from '../helpers/getUserToken.js'
+import getUserData from '../helpers/getUserData.js'
 
-export default (req, res) => {
+export default async (req, res) => {
     try {
         
-        const { userId } = req.params
         const { current, destination } = req.body
 
-        fs.renameSync(`uploads/${userId}/${current}`, `uploads/${userId}/${destination}`)
+        const token = await getUserToken(req.headers.authorization)
+        const userData = await getUserData(token)
+        const { id } = userData.data
+
+        fs.renameSync(`uploads/${id}/${current}`, `uploads/${id}/${destination}`)
 
         res.json({ message: "Folder / File has been renamed." })
 
