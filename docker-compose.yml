@@ -12,6 +12,8 @@ services:
     environment:
       - PORT=${PORT}
       - HOST=${HOST}
+      - JWT_HOST=${JWT_HOST}
+      - LOG_FORMAT=${LOG_FORMAT}
       - TMP_UPLOAD_FOLDER=${TMP_UPLOAD_FOLDER}
     volumes:
       - ./uploads:/app/uploads
