@@ -16,9 +16,9 @@ const videoResponse = async (req, res) => {
     try {
         const { p } = req.query
 
-        const token = await getUserToken(req.headers.authorization)
-        const userData = await getUserData(token)
-        const { id } = userData.data
+        // const token = await getUserToken(req.headers.authorization)
+        // const userData = await getUserData(token)
+        // const { id } = userData.data
 
         const range = req.headers.range
         const videoPath = `uploads/${id}/${p}`

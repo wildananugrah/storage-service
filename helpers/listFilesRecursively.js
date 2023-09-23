@@ -42,7 +42,7 @@ const listFilesRecursively = (dir, userId) => {
     for (let i = 0; i < items.length; i++) {
         let itemPath = path.join(dir, items[i])
         const stat = fs.statSync(itemPath)
-        console.log(stat.birthtime)
+        
         results.push({
             item: itemPath.replace(`uploads/${userId}`, ''),
             isDirectory: stat.isDirectory(),
