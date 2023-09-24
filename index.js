@@ -16,6 +16,7 @@ import deleteFolder from './controllers/deleteFolder.js'
 import putRename from './controllers/putRename.js'
 import putMoveFolder from './controllers/putMoveFolder.js'
 import putMoveFile from './controllers/putMoveFile.js'
+import downloadFile from './controllers/downloadFile.js'
 
 // setup config environment
 dotenv.config()
@@ -70,6 +71,7 @@ app.delete("/folder", deleteFolder)
 app.put("/folder", putMoveFolder)
 
 app.put("/rename", putRename)
+app.get("/download", downloadFile)
 
 // healthcheck
 app.get("/healthcheck", (req, res) => {
