@@ -13,7 +13,7 @@ export default async (req, res) => {
         const userData = await getUserData(token)
         const { id } = userData.data
 
-        const destinationPath = req.query.root === undefined ? `uploads/${id}/${folder}/tmp` : `uploads/${id}/${root}/${folder}/tmp` // i don't know why i have to add /tmp but it works.........
+        const destinationPath = req.query.root === undefined ? `uploads/${id}/${folder}/tmp` : `uploads/${id}/${req.query.root}/${folder}/tmp` // i don't know why i have to add /tmp but it works.........
         if (fs.existsSync(path.dirname(destinationPath))) return res.status(400).json({ message: `folder exists` })
         createFolder(destinationPath)
 
