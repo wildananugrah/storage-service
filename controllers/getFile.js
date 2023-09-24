@@ -14,11 +14,11 @@ const videoMap = {
 const videoResponse = async (req, res) => {
 
     try {
-        const { p } = req.query
+        const { p, _token } = req.query
 
-        // const token = await getUserToken(req.headers.authorization)
-        // const userData = await getUserData(token)
-        // const { id } = userData.data
+        const token = await getUserToken(_token)
+        const userData = await getUserData(token)
+        const { id } = userData.data
 
         const range = req.headers.range
         const videoPath = `uploads/${id}/${p}`
@@ -49,9 +49,9 @@ const videoResponse = async (req, res) => {
 const imageResponse = async (req, res) => {
 
     try {
-        const { p } = req.query
+        const { p, _token } = req.query
 
-        const token = await getUserToken(req.headers.authorization)
+        const token = await getUserToken(_token)
         const userData = await getUserData(token)
         const { id } = userData.data
 
