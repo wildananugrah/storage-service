@@ -14,9 +14,8 @@ const videoMap = {
 const videoResponse = async (req, res) => {
 
     try {
-        const { p, _token } = req.query
+        const { p, token } = req.query
 
-        const token = await getUserToken(_token)
         const userData = await getUserData(token)
         const { id } = userData.data
 
@@ -49,9 +48,8 @@ const videoResponse = async (req, res) => {
 const imageResponse = async (req, res) => {
 
     try {
-        const { p, _token } = req.query
-
-        const token = await getUserToken(_token)
+        const { p, token } = req.query
+        
         const userData = await getUserData(token)
         const { id } = userData.data
 
