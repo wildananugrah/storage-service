@@ -74,7 +74,7 @@ app.put("/folder", putMoveFolder)
 app.put("/rename", putRename)
 app.get("/download", downloadFile)
 
-app.post("/user/download", userDownloadFile)
+app.get("/user/download", userDownloadFile)
 
 // healthcheck
 app.get("/healthcheck", (req, res) => {
