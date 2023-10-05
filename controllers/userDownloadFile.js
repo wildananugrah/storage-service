@@ -20,19 +20,17 @@ export default async (req, res) => {
             'Content-Disposition': 'attachment; filename=download.zip'
         });
 
+        // Pipe the archive data to the response object to download the zip
+        archive.pipe(res);
+
         // Add files to the zip. For this example, I'm adding two sample files.
         // You can add as many files as you want.
         for (let i = 0; i < files.length; i++) {
-            archive.append(fs.createReadStream(files[i].fullpath), { name: `file${i}.jpg` });
+            archive.append(fs.createReadStream(`${PATH_HOME}/${files[i]}`), { name: `file${i}.jpg` });
         }
 
         // Finalize the archive (this step is essential to ensure your archive is finalized and fully sent to the client)
         archive.finalize();
-
-        // Pipe the archive data to the response object to download the zip
-        archive.pipe(res);
-
-
 
     } catch (e) {
         return res.status(500).json({ message: e.message })
