@@ -29,7 +29,7 @@ export default async (req, res) => {
         if(typeof files === "string") archive.append(fs.createReadStream(`${PATH_HOME}/${files}`), { name: `${files.split("/").pop()}.${files.split('.').pop().toLowerCase()}` });
         else if(typeof files === "object") 
             for (let i = 0; i < files.length; i++) {
-                archive.append(fs.createReadStream(`${PATH_HOME}/${files[i]}`), { name: `${files[i].split("/").pop()}.${files[i].split('.').pop().toLowerCase()}` });
+                archive.append(fs.createReadStream(`${PATH_HOME}/${files[i]}`), { name: `${files[i].split("/").pop()}` });
             }
 
         // Finalize the archive (this step is essential to ensure your archive is finalized and fully sent to the client)
