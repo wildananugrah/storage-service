@@ -6,7 +6,7 @@ export default async (req, res) => {
     const userId = 'e93f311d-ed9d-46f1-a514-55d619fc9fc9'
     const PATH_HOME = `uploads/${userId}`
 
-    const { files } = req.body
+    const { files } = req.query
 
     try {
 
