@@ -25,9 +25,11 @@ export default async (req, res) => {
 
         // Add files to the zip. For this example, I'm adding two sample files.
         // You can add as many files as you want.
-        for (let i = 0; i < files.length; i++) {
-            archive.append(fs.createReadStream(`${PATH_HOME}/${files[i]}`), { name: `file${i}.${files[i].split('.').pop().toLowerCase()}` });
-        }
+        if(files.length === 0) archive.append(fs.createReadStream(`${PATH_HOME}/${files}`), { name: `${files.split("/").pop()}.${files.split('.').pop().toLowerCase()}` });
+        else 
+            for (let i = 0; i < files.length; i++) {
+                archive.append(fs.createReadStream(`${PATH_HOME}/${files[i]}`), { name: `${files[i].split("/").pop()}.${files[i].split('.').pop().toLowerCase()}` });
+            }
 
         // Finalize the archive (this step is essential to ensure your archive is finalized and fully sent to the client)
         archive.finalize();
