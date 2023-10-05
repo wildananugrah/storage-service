@@ -17,6 +17,7 @@ import putRename from './controllers/putRename.js'
 import putMoveFolder from './controllers/putMoveFolder.js'
 import putMoveFile from './controllers/putMoveFile.js'
 import downloadFile from './controllers/downloadFile.js'
+import userDownloadFile from './controllers/userDownloadFile.js'
 
 // setup config environment
 dotenv.config()
@@ -72,6 +73,8 @@ app.put("/folder", putMoveFolder)
 
 app.put("/rename", putRename)
 app.get("/download", downloadFile)
+
+app.get("/user/download", userDownloadFile)
 
 // healthcheck
 app.get("/healthcheck", (req, res) => {
