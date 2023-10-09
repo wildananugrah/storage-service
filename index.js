@@ -13,9 +13,6 @@ import getFile from './controllers/getFile.js'
 import getFolders from './controllers/getFolders.js'
 import postFolder from './controllers/postFolder.js'
 import deleteFolder from './controllers/deleteFolder.js'
-import putRename from './controllers/putRename.js'
-import putMoveFolder from './controllers/putMoveFolder.js'
-import putMoveFile from './controllers/putMoveFile.js'
 import downloadFile from './controllers/downloadFile.js'
 import userDownloadFile from './controllers/userDownloadFile.js'
 
@@ -63,15 +60,12 @@ app.get("/files", getFiles)
 
 app.delete("/file", deleteFile)
 app.get("/file", getFile)
-app.put("/file", putMoveFile)
 
 app.get("/folders", getFolders)
 
 app.post("/folder", postFolder)
 app.delete("/folder", deleteFolder)
-app.put("/folder", putMoveFolder)
 
-app.put("/rename", putRename)
 app.get("/download", downloadFile)
 
 app.get("/user/download", userDownloadFile)
