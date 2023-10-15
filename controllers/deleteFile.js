@@ -21,6 +21,7 @@ export default async (req, res) => {
         const index = responseJson.data.findIndex(item => item.path === p);
         console.log(`index: ${index}`)
         index ===  -1 ? () => {
+            console.log(`hello there!`)
             fs.unlinkSync(`uploads/${id}/${p}`)
             return res.json({ message: "File has been deleted." })
         } : () => {
