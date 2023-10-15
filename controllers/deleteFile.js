@@ -19,12 +19,13 @@ export default async (req, res) => {
 
         const responseJson = await response.json()
         const index = responseJson.data.findIndex(item => item.path === p);
-
+        console.log(`index: ${index}`)
         index ===  -1 ? () => {
             fs.unlinkSync(`uploads/${id}/${p}`)
             return res.json({ message: "File has been deleted." })
         } : () => {
             const data = responseJson.data[index]
+            console.log(`data: ${data}`)
             return res.status(400).json({ message: `File can not be deleted due to this item has a constraint with this product ${data.productId}` })
         }
         
