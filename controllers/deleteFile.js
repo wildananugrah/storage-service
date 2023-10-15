@@ -11,7 +11,11 @@ export default async (req, res) => {
         const userData = await getUserData(token)
         const { id } = userData.data
 
-        const response = await fetch(`${process.env.DIUDARA_BE_HOST}/product-items`)
+        const response = await fetch(`${process.env.DIUDARA_BE_HOST}/product-items`, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
 
         const responseJson = await response.json()
         const index = responseJson.data.findIndex(item => item.path === p);
