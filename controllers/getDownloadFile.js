@@ -1,7 +1,7 @@
 import fs from 'fs'
 import archiver from 'archiver'
 
-export default getDownloadFile = async (req, res) => {
+export default async (req, res) => {
     const { token } = req.query
 
     try {
