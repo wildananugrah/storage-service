@@ -15,6 +15,7 @@ import postFolder from './controllers/postFolder.js'
 import deleteFolder from './controllers/deleteFolder.js'
 import downloadFile from './controllers/downloadFile.js'
 import userDownloadFile from './controllers/userDownloadFile.js'
+import getDownloadFile from './controllers/getDownloadFile.js'
 
 // setup config environment
 dotenv.config()
@@ -69,6 +70,8 @@ app.delete("/folder", deleteFolder)
 app.get("/download", downloadFile)
 
 app.get("/user/download", userDownloadFile)
+
+app.get("/file/download", getDownloadFile)
 
 // healthcheck
 app.get("/healthcheck", (req, res) => {
