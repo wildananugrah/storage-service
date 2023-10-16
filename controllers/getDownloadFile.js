@@ -16,9 +16,9 @@ export default async (req, res) => {
 
         const validateTokenJson = await validateToken.json()
 
-        const PATH_HOME = `uploads/${validateTokenJson.id}`
-        const { files } = validateTokenJson
-
+        const PATH_HOME = `uploads/${validateTokenJson.data.id}`
+        const { files } = validateTokenJson.data
+        
         const archive = archiver('zip', {
             zlib: { level: 9 } // Sets the compression level.
         });
