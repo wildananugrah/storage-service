@@ -3,12 +3,15 @@ import archiver from 'archiver'
 
 export default async (req, res) => {
 
-    const userId = 'e93f311d-ed9d-46f1-a514-55d619fc9fc9'
-    const PATH_HOME = `uploads/${userId}`
-
-    const { files } = req.query
+    const { files, username } = req.query
 
     try {
+
+        const userProfile = await fetch(`${process.env.DIUDARA_BE_HOST}/user-profile/${username}`)
+        const userProfileJson = await userProfile.json()
+        const userProfileData = userProfileJson.data
+
+        const PATH_HOME = `uploads/${userProfileData.id}`
 
         const archive = archiver('zip', {
             zlib: { level: 9 } // Sets the compression level.
@@ -26,8 +29,8 @@ export default async (req, res) => {
         // Add files to the zip. For this example, I'm adding two sample files.
         // You can add as many files as you want.
         // TODO: it should be better. 
-        if(typeof files === "string") archive.append(fs.createReadStream(`${PATH_HOME}/${files}`), { name: `${files.split("/").pop()}.${files.split('.').pop().toLowerCase()}` });
-        else if(typeof files === "object") 
+        if (typeof files === "string") archive.append(fs.createReadStream(`${PATH_HOME}/${files}`), { name: `${files.split("/").pop()}.${files.split('.').pop().toLowerCase()}` });
+        else if (typeof files === "object")
             for (let i = 0; i < files.length; i++) {
                 archive.append(fs.createReadStream(`${PATH_HOME}/${files[i]}`), { name: `${files[i].split("/").pop()}` });
             }
