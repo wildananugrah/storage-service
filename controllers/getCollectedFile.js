@@ -53,7 +53,7 @@ const imageResponse = async (req, res) => {
         const response = await fetch(`${process.env.DIUDARA_BE_HOST}/products/${productId}`)
         const responseJson = await response.json()
 
-        const data = fs.readFileSync(`uploads/${responseJson.userId}/${p}`)
+        const data = fs.readFileSync(`uploads/${responseJson.data.userId}/${p}`)
         res.writeHead(200, { 'Content-Type': imageMap[path.extname(p)] })
         res.end(data)
     } catch (err) {
