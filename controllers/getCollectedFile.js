@@ -20,7 +20,7 @@ const videoResponse = async (req, res) => {
         const responseJson = await response.json()
 
         const range = req.headers.range
-        const videoPath = `uploads/${responseJson.userId}/${p}`
+        const videoPath = `uploads/${responseJson.data.userId}/${p}`
         const videoSize = fs.statSync(videoPath).size
         const chunkSize = 1 * 1e6;
         const start = Number(range.replace(/\D/g, ""))
