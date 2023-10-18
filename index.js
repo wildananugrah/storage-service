@@ -16,6 +16,7 @@ import deleteFolder from './controllers/deleteFolder.js'
 import downloadFile from './controllers/downloadFile.js'
 import userDownloadFile from './controllers/userDownloadFile.js'
 import getDownloadFile from './controllers/getDownloadFile.js'
+import getCollectedFile from './controllers/getCollectedFile.js'
 
 // setup config environment
 dotenv.config()
@@ -72,6 +73,8 @@ app.get("/download", downloadFile)
 app.get("/user/download", userDownloadFile)
 
 app.get("/file/download", getDownloadFile)
+
+app.get('/collected/file', getCollectedFile)
 
 // healthcheck
 app.get("/healthcheck", (req, res) => {
